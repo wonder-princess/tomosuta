@@ -1,0 +1,60 @@
+p {
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 100px;
+    margin: 0;
+}
+
+.content {
+    background-color: #fff;
+    width: 600px;
+    padding: 30px; /*内側の余白*/
+    margin: 10px auto; /*外側の余白*/
+    /* -----以下と同じ-----
+    margin-top: 10px;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-left: auto; */
+    border: 1px solid #ccc;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.2em; /*1.2倍*/
+    width: 100%;
+    padding: 8px;
+}
+button  {
+    width: 50%;
+    background-color: #2096f3;
+    color: #fff;
+    margin: auto;
+    padding: 15px;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: rgba(0,0,0,.5);
+}
+
+.required{
+    color: #f33;
+    font-size: .9em;
+    padding: 3px;
+    background-color: #fee;
+    font-weight: bold;    
+}
+
+body {
+    background-color: #fefefe;
+}
+
+.control {
+    margin-bottom: 3em;
+}
+
+label {
+    display: block;
+    margin-bottom: .5em;
+}
