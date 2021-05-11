@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang=>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+        .container {
+            text-align: center;
+            margin: 30px;
+            margin: auto;
+        }
+
+        #timer {
+            font-size: 36px;
+            border: 1px solid #eee;
+            margin: 30px auto;
+            padding: 50px;
+            color: #fff;
+            background-color: #000;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgb(0, 0, 0, .5);
+        }
+
+        .btn {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p id="time"></p>
+        <p id="timer">00:00:00</p>
+        <div class="row justify-content-center">
+            <botton class="btn btn-lg btn-primary col-sm-2 col-sm-offset2" id="start_stop">START</botton>
+            <div class="col-sm-1"></div>
+            <botton class="btn btn-lg btn-primary col-sm-2" id="reset">RESET</botton>
+        </div>
+    </div>
+    
+    <script>
+        var date = new Date();
+        var start;
+        var stop;
+        var timer_id;
+
+        var setTime = function() {
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            var hours = date.getHours();
+            document.getElementById('time').innerHTML = convertTime(hours, minutes, seconds);
+        }
+
+        setTime();
+
+        document.getElementById('start_stop').addEventListener('click', start_ston);
+        document.getElementById('reset').addEventListener('click', reset);
+
+        function start_ston() {
+            if (this.innerHTML === 'START') {
+                start = new Date();
+                timer_id = setInterval(goTimer, 100);
+
+                this.innerHTML = 'STOP';
+                this.classList.remove('btn-primary');
+                this.classList.add('btn-danger');
+                
+            } else {
+                this.innerHTML = 'START';
+                this.classList.remove('btn-danger');
+                this.classList.add('btn-primary');
+
+                clearInterval(timer_id);
+            }
+        }
+
+        function goTimer() {
+            stop = new Date();
+            
+            var milli = stop.getTime() - start.getTime();
+            var seconds = Math.floor(milli / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+
+            seconds = seconds - minutes * 60;
+            minutes = minutes - hours * 60;
+
+            document.getElementById('timer').innerHTML = convertTime(hours, minutes, seconds);
+        }
+
+        function reset() {
+            document.getElementById('timer').innerHTML = '00:00:00';
+        }
+
+        function convertTime() {
+            var str = '';
+            for (var i = 0; i < arguments.length; i += 1) {
+                if(arguments[i] <= 9) {
+                    arguments[i] = '0' + arguments[i];
+                }
+                if (i + 1 < arguments.length){
+                    str += arguments[i] + ':';
+                }else{
+                    str += arguments[i];
+                }
+            }
+            return str;
+        }
+
+
+    </script>
+
+</body>
+</html>
