@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPhotos</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Calligraffitti&family=Coming+Soon&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgba(26, 55, 229, 0.06);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 3px rgba(0, 0, 0, 3);
+        }
+
+        img {
+            width: 100%;
+            margin: 0;
+            vertical-align: top;
+            /* 縦方向の位置揃え */
+        }
+
+        header {
+            background-color: #007acc;
+            color: #fff;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            /* 位置指定要素とその子孫要素、またはフレックスアイテムの z 順を定義 */
+            z-index: 100;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 25px;
+            padding: 5px;
+            text-align: center;
+            font-family: 'Calligraffitti', cursive;
+            font-family: 'Coming Soon', cursive;
+        }
+
+        .photo {
+            position: relative;
+        }
+
+        .photo .inner {
+            /* fhotoの子要素にabsoluteを使う場合、画面全体の絶対配置になってしまうため
+               写真を親要素に指定する必要があり、親要素に「position: relative」の記述 */
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 10px;
+            color: #fff;
+            margin: 0;
+            /* absoluteを指定した際、divタグであってもインライン要素になるため、wisthの指定が必要*/
+            width: 100%;
+        }
+
+        .inner p {
+            padding: 20px;
+        }
+
+        .inner span {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>MY PHOTOS</h1>
+    </header>
+    <div class="container">
+        <div id="img_unit">
+            <div class="photo" v-for="Photo in Photos">
+                <img :src="Photo.path">
+                <div class="inner">
+                    <p>{{ Photo.caption }}<span>{{ Photo.name }}</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div id="app">
+            {{ message }}
+            {{ hoge }}
+        </div> -->
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        // trial
+        /*
+        $('#img_unit').html('ここに画像が表示').css('margin-top', '100px');
+        
+        // 第二引数の処理がコールバックされる
+        $.getJSON('https://h2o-space.com/htmlbook/images.php', function (date) {
+            // console.log('データ受信');
+            for (let i = 0; i < date.length; i++) {
+                // console.log(i + ':' +date[i]);
+                // console.log(i + ':' +date[i].path);
+                
+                $('<div class="photo"></div>')
+                .append('<img src="' + date[i].path + '">')
+                .append('<div class="inner"><p>' + date[i].caption + '<span>' + date[i].name + '</span></p></div>')
+                .appendTo('#img_unit');
+            }
+        });
+        */
+        
+        // trial
+        /*
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                hoge: 'unti'
+            }
+        })
+        */
+
+        var app = new Vue({
+            el: '#img_unit',
+            date: {
+                Photos: []
+            },
+            created: function() {
+                var self = this;
+                $.getJSON('https://h2o-space.com/htmlbook/images.php', function (date) {
+                    self.Photos = date;
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
