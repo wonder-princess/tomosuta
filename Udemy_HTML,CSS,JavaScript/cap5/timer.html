@@ -59,10 +59,10 @@
 
         setTime();
 
-        document.getElementById('start_stop').addEventListener('click', start_ston);
+        document.getElementById('start_stop').addEventListener('click', start_btn);
         document.getElementById('reset').addEventListener('click', reset);
 
-        function start_ston() {
+        function start_btn() {
             if (this.innerHTML === 'START') {
                 start = new Date();
                 timer_id = setInterval(goTimer, 100);
@@ -83,8 +83,8 @@
         function goTimer() {
             stop = new Date();
             
-            var milli = stop.getTime() - start.getTime();
-            var seconds = Math.floor(milli / 1000);
+            var millie = stop.getTime() - start.getTime();
+            var seconds = Math.floor(millie / 1000);
             var minutes = Math.floor(seconds / 60);
             var hours = Math.floor(minutes / 60);
 
