@@ -9,7 +9,7 @@ const getTax = (price, tax=10) => {
     return Math.round(price * (tax / 100));
 }
 
-//console.log(getTxax(1980));
+//console.log(getTax(1980));
 
 class Tax {
     value = 100;
