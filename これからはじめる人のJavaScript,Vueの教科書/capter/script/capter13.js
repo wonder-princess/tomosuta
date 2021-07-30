@@ -24,7 +24,8 @@ const city =
     { id: 352, name: '鹿児島' },
     { id: 352, name: '奄美' },
     { id: 353, name: '那覇' },
-    { id: 356, name: '石垣' }];
+    { id: 356, name: '石垣' },
+    { id: 8888, name: 'ラピュタ' }];
 
 function getWeather () {
     
@@ -65,10 +66,13 @@ for (let i = 0; i < city.length; i++) {
         console.log(city[i].name);
         cityName = city[i].name;
         cityId = city[i].id;
-
-        console.log(api + cityId);
-        getWeather();
-
+        
+        if (cityId == 8888) {
+            document.write('竜の巣だ！！！');
+        } else {            
+            console.log(api + cityId);
+            getWeather();
+        }
     });
 
     ul.appendChild(li);
