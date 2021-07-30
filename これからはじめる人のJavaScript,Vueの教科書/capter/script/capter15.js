@@ -1,11 +1,11 @@
 
 const tax = new Tax;
-tax.setRaito = 10;
+tax.setRate = 10;
 
 const TAX = tax.salesTax;
 
 // 標準値を設定
-const getTxax = (price, tax=10) => {
+const getTax = (price, tax=10) => {
     return Math.round(price * (tax / 100));
 }
 
@@ -13,13 +13,13 @@ const getTxax = (price, tax=10) => {
 
 class Tax {
     value = 100;
-    raito;
+    rate;
     constructor () {
-        const salesTax = (this.raito / this.value)
+        const salesTax = (this.rate / this.value)
     }
-    static setRaito(val){
+    static setRate(val){
         try {
-            this.raito = val;
+            this.rate = val;
         } catch (error) {
             console.log(error.message);
         }
